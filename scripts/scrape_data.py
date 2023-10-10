@@ -59,11 +59,11 @@ if __name__ == "__main__":
                     else:
                         num_discs = len(serials)
                         title = ' '.join(title.split()).split(' - [ %d DISCS ]' % num_discs)[0].strip()
-                        for i, serial in enumerate(serials):
+                        for serial in serials:
                             if len(serial) == 0:
                                 raise ValueError("Empty serial: %s" % row)
                             if serial in curr_data:
                                 warn("Duplicate serial (%s): %s" % (serial, row))
                             else:
-                                curr_data[serial] = '%s - DISC %d' % (title, i+1)
+                                curr_data[serial] = title
         f = open(out_fn, 'w'); jdump(curr_data, f); f.close(); print()
