@@ -6,7 +6,7 @@ from datetime import datetime
 from glob import glob
 from json import load as jload
 from os import mkdir
-from os.path import isdir, isfile, join
+from os.path import basename, dirname, isdir, isfile, join
 from shutil import copytree
 from sys import argv
 from urllib.request import urlopen
@@ -59,7 +59,7 @@ if __name__ == "__main__":
         if isdir(curr_path) and curr_path not in IGNORE:
             to_explore += list(glob(join(curr_path, '*')))
         elif isfile(curr_path) and curr_path.lower().endswith('.mcd'):
-            game_folders.add(join(*curr_path.replace('\\','/').split('/')[:-1]))
+            game_folders.add(dirname(curr_path))
     print("Found %d game folder(s)" % len(game_folders))
 
     # rename game folders
@@ -68,9 +68,9 @@ if __name__ == "__main__":
         raise ValueError("Output path exists: %s" % out_path)
     mkdir(out_path); serial_not_found = list()
     for curr_path in game_folders:
-        folder = curr_path.replace('\\','/').split('/')[-1].strip()
+        folder = basename(curr_path).strip()
         if ' - ' in folder: # folder with title, so rename to MemCard PRO format
-            memcard_folder = '-'.join(list(glob(join(curr_path, '*.mcd')))[0].split('-'))
+            memcard_folder = '-'.join(basename(list(glob(join(curr_path, '*.mcd')))[0]).split('-')[:-1])
             copytree(curr_path, join(out_path, memcard_folder))
         else:               # folder without title, so rename to human-readable
             folder_upper = folder.upper(); curr_title = None
