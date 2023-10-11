@@ -3,6 +3,7 @@
 Scrape PSX/PS2/PSP serial numbers and titles from psxdatacenter.com
 '''
 from bs4 import BeautifulSoup
+from datetime import datetime
 from json import dump as jdump
 from urllib.request import urlopen
 from warnings import warn
@@ -26,6 +27,10 @@ URLS = {
     ],
 }
 
+# get current time as a string YYYY-MM-DD HH:MM:SS
+def get_time():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 # main program
 if __name__ == "__main__":
     for console, urls in URLS.items():
@@ -45,25 +50,13 @@ if __name__ == "__main__":
                     serials = {v.text.strip() for v in serials}
                 title = row.find_all('td', class_='col3')
                 if len(title) == 1:
-                    title = title[0].text.strip()
-                    if 'PLASMALITE' in title:
-                        print(row.find_all('td', class_='col2'))
-                    if len(serials) == 1:
-                        serial = serials.pop()
+                    title = title[0].text.strip().splitlines()[0].strip()
+                    for serial in serials:
                         if len(serial) == 0:
-                            continue
+                            raise ValueError("Empty serial: %s" % row)
                         if serial in curr_data:
                             warn("Duplicate serial (%s): %s" % (serial, row))
                         else:
                             curr_data[serial] = title
-                    else:
-                        num_discs = len(serials)
-                        title = ' '.join(title.split()).split(' - [ %d DISCS ]' % num_discs)[0].strip()
-                        for serial in serials:
-                            if len(serial) == 0:
-                                raise ValueError("Empty serial: %s" % row)
-                            if serial in curr_data:
-                                warn("Duplicate serial (%s): %s" % (serial, row))
-                            else:
-                                curr_data[serial] = title
         f = open(out_fn, 'w'); jdump(curr_data, f); f.close(); print()
+    f = open('README.md', 'w'); f.write('Data scraped from the [PlayStation DataCenter](https://psxdatacenter.com/) on: %s\n\nPlease support the [PlayStation DataCenter](https://psxdatacenter.com/) for their hard work!!!\n' % get_time()); f.close()
