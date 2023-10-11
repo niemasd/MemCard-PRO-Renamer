@@ -15,6 +15,7 @@ from urllib.request import urlopen
 JSON_URLS = {
     'PSX': 'https://github.com/niemasd/PSX-PS2-Save-Tools/raw/main/data/PSX.json',
     'PS2': 'https://github.com/niemasd/PSX-PS2-Save-Tools/raw/main/data/PS2.json',
+    '???': 'https://github.com/niemasd/PSX-PS2-Save-Tools/raw/main/data/missing.json',
 }
 
 # folders to ignore
