@@ -1,6 +1,7 @@
 # MemCard PRO files
 MemoryCards
 *.mcd
+renamed_*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

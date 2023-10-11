@@ -7,6 +7,7 @@ from glob import glob
 from json import load as jload
 from os import mkdir
 from os.path import basename, dirname, isdir, isfile, join
+from re import sub
 from shutil import copytree
 from sys import argv
 from urllib.request import urlopen
@@ -23,6 +24,10 @@ IGNORE = {'__MACOSX'}
 # get current time as a string YYYY-MM-DD_HH-MM-SS
 def get_time():
     return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+# convert a string to a safe folder name (replace unsafe symbols with '_')
+def safe_name(s):
+    return sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F]", '_', s)
 
 # load serial-to-title mapping
 def load_jsons(json_urls):
@@ -71,7 +76,7 @@ if __name__ == "__main__":
         folder = basename(curr_path).strip()
         if ' - ' in folder: # folder with title, so rename to MemCard PRO format
             memcard_folder = '-'.join(basename(list(glob(join(curr_path, '*.mcd')))[0]).split('-')[:-1])
-            copytree(curr_path, join(out_path, memcard_folder))
+            copytree(curr_path, join(out_path, safe_name(memcard_folder)))
         else:               # folder without title, so rename to human-readable
             folder_upper = folder.upper(); curr_title = None
             if folder_upper in TITLE:
@@ -83,7 +88,7 @@ if __name__ == "__main__":
             if curr_title is None:
                 serial_not_found.append(folder_upper)
             else:
-                copytree(curr_path, join(out_path, '%s - %s' % (folder, curr_title)))
+                copytree(curr_path, join(out_path, safe_name('%s - %s' % (folder, curr_title))))
 
     # report any that failed to copy
     if len(serial_not_found) != 0:
