@@ -80,7 +80,7 @@ if __name__ == "__main__":
         for curr_path in game_folders:
             folder = curr_path.name.strip()
             if ' - ' in folder: # folder with title, so rename to MemCard PRO format
-                memcard_folder = '-'.join(curr_path.glob('*.mcd')[0].name.split('-')[:-1])
+                memcard_folder = '-'.join(list(curr_path.glob('*.mcd'))[0].name.split('-')[:-1])
                 copytree(curr_path, out_path.joinpath(safe_name(memcard_folder)))
             else:               # folder without title, so rename to human-readable
                 folder_upper = folder.upper(); curr_title = None
