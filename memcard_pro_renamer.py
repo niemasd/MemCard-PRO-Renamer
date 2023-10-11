@@ -10,7 +10,10 @@ from re import sub
 from shutil import copytree
 from sys import argv
 from urllib.request import urlopen
-VERSION = '1.0.1'
+
+# useful constants
+VERSION = '1.0.2'
+EXIT_STRING = "Press ENTER to exit"
 
 # serial-to-title JSONs as dicts: https://github.com/niemasd/MemCard-PRO-Renamer/tree/main/data
 DICTS = {
@@ -57,8 +60,10 @@ if __name__ == "__main__":
         # check user args
         if len(argv) == 1:
             argv.append(input("Drag folder here and hit ENTER: "))
-        if len(argv) != 2:
+        if len(argv) > 2:
             print("%s <folder>" % argv[0]); exit(1)
+        if len(argv[1].strip()) == 0:
+            input("No input path entered.\n%s" % EXIT_STRING); exit()
         orig_path = Path(argv[1].strip()).expanduser().absolute()
         if not orig_path.is_dir():
             raise ValueError("Folder not found: %s" % orig_path)
@@ -112,4 +117,4 @@ if __name__ == "__main__":
             print("\nConsider submitting them to https://psxdatacenter.com")
     except Exception as e:
         print(str(e))
-    input("\nPress ENTER to exit")
+    input("\n%s" % EXIT_STRING)
