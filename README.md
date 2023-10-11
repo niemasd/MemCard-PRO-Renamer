@@ -1,4 +1,4 @@
-[`memcard_pro_renamer.py`](memcard_pro_renamer.py) is a cross-platform pure-Python script for renaming MemCard PRO save folders. Just do the following:
+[**`memcard_pro_renamer.py`**](memcard_pro_renamer.py) is a cross-platform pure-Python script for renaming MemCard PRO save folders. Just do the following:
 
 1. Download the [`memcard_pro_renamer.py`](memcard_pro_renamer.py) script to your computer
 2. Run the script (e.g. double-click)
