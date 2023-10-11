@@ -16,4 +16,4 @@ You'll need Python installed on your machine to run this script, and it *should*
 
 # OS-Specific Notes
 ## Windows
-Instead of installing Python from [python.org](https://www.python.org), which doesn't seem to work with double-click out-of-the-box, try installing Python through the [Microsoft Store](https://apps.microsoft.com/detail/python-3-11/9NRWMJP3717K).
+Instead of installing Python from [python.org](https://www.python.org), which doesn't seem to work with double-click out-of-the-box (it seems to just instantly close the command prompt that gets opened), try installing Python through the [Microsoft Store](https://apps.microsoft.com/detail/python-3-11/9NRWMJP3717K).
