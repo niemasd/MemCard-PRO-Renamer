@@ -10,6 +10,7 @@ from re import sub
 from shutil import copytree
 from sys import argv
 from urllib.request import urlopen
+VERSION = '1.0.0'
 
 # serial-to-title JSON URLs
 JSON_URLS = {
@@ -27,7 +28,7 @@ def get_time():
 
 # convert a string to a safe folder name (replace unsafe symbols with '_')
 def safe_name(s):
-    return sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F]", '_', s)
+    return sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F]", '_', s.strip())
 
 # load serial-to-title mapping
 def load_jsons(json_urls):
@@ -43,13 +44,14 @@ def load_jsons(json_urls):
 
 # main program
 if __name__ == "__main__":
+    print("Welcome to the MemCard PRO Renamer v%s" % VERSION)
     try:
         # check user args
         if len(argv) == 1:
             argv.append(input("Drag folder here and hit ENTER: "))
         if len(argv) != 2:
             print("%s <folder>" % argv[0]); exit(1)
-        orig_path = Path(argv[1]).expanduser().absolute()
+        orig_path = Path(argv[1].strip()).expanduser().absolute()
         if not orig_path.is_dir():
             raise ValueError("Folder not found: %s" % orig_path)
 
