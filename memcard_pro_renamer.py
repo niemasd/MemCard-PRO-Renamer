@@ -6,7 +6,7 @@ from datetime import datetime
 from glob import glob
 from json import load as jload
 from os import mkdir
-from os.path import isdir, isfile
+from os.path import isdir, isfile, join
 from shutil import copytree
 from sys import argv
 from urllib.request import urlopen
@@ -39,6 +39,8 @@ def load_jsons(json_urls):
 # main program
 if __name__ == "__main__":
     # check user args
+    if len(argv) == 1:
+        argv.append(input("Drag folder here and hit ENTER: "))
     if len(argv) != 2:
         print("%s <folder>" % argv[0]); exit(1)
     if not isdir(argv[1]):
@@ -54,7 +56,7 @@ if __name__ == "__main__":
     while len(to_explore) != 0:
         curr_path = to_explore.pop()
         if isdir(curr_path) and curr_path not in IGNORE:
-            to_explore += list(glob('%s/*' % curr_path))
+            to_explore += list(glob(join(curr_path, '*')))
         elif isfile(curr_path) and curr_path.lower().endswith('.mcd'):
             game_folders.add('/'.join(curr_path.split('/')[:-1]))
     print("Found %d game folder(s)" % len(game_folders))
@@ -67,7 +69,7 @@ if __name__ == "__main__":
     for curr_path in game_folders:
         folder = curr_path.split('/')[-1].strip()
         if ' - ' in folder: # folder with title, so rename to MemCard PRO format
-            memcard_folder = '-'.join(list(glob('%s/*.mcd' % curr_path))[0].split('-'))
+            memcard_folder = '-'.join(list(glob(join(curr_path, '*.mcd')))[0].split('-'))
             copytree(curr_path, '%s/%s' % (out_path, memcard_folder))
         else:               # folder without title, so rename to human-readable
             folder_upper = folder.upper(); curr_title = None
