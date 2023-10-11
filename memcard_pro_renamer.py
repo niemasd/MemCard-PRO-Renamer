@@ -43,6 +43,7 @@ if __name__ == "__main__":
         argv.append(input("Drag folder here and hit ENTER: "))
     if len(argv) != 2:
         print("%s <folder>" % argv[0]); exit(1)
+    argv[1] = argv[1].rstrip('/').rstrip('\\')
     if not isdir(argv[1]):
         raise ValueError("Folder not found: %s" % argv[1])
 
@@ -58,19 +59,19 @@ if __name__ == "__main__":
         if isdir(curr_path) and curr_path not in IGNORE:
             to_explore += list(glob(join(curr_path, '*')))
         elif isfile(curr_path) and curr_path.lower().endswith('.mcd'):
-            game_folders.add('/'.join(curr_path.split('/')[:-1]))
+            game_folders.add(join(*curr_path.replace('\\','/').split('/')[:-1]))
     print("Found %d game folder(s)" % len(game_folders))
 
     # rename game folders
-    out_path = '%s/../renamed_%s' % (argv[1], get_time())
+    out_path = join(argv[1], '..', 'renamed_%s' % get_time())
     if isfile(out_path) or isdir(out_path):
         raise ValueError("Output path exists: %s" % out_path)
     mkdir(out_path); serial_not_found = list()
     for curr_path in game_folders:
-        folder = curr_path.split('/')[-1].strip()
+        folder = curr_path.replace('\\','/').split('/')[-1].strip()
         if ' - ' in folder: # folder with title, so rename to MemCard PRO format
             memcard_folder = '-'.join(list(glob(join(curr_path, '*.mcd')))[0].split('-'))
-            copytree(curr_path, '%s/%s' % (out_path, memcard_folder))
+            copytree(curr_path, join(out_path, memcard_folder))
         else:               # folder without title, so rename to human-readable
             folder_upper = folder.upper(); curr_title = None
             if folder_upper in TITLE:
@@ -82,7 +83,7 @@ if __name__ == "__main__":
             if curr_title is None:
                 serial_not_found.append(folder_upper)
             else:
-                copytree(curr_path, '%s/%s - %s' % (out_path, folder, curr_title))
+                copytree(curr_path, join(out_path, '%s - %s' % (folder, curr_title)))
 
     # report any that failed to copy
     if len(serial_not_found) != 0:
