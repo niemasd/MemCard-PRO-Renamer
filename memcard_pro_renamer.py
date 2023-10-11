@@ -3,10 +3,9 @@
 Manage save files from MemCardPro
 '''
 from datetime import datetime
-from glob import glob
 from json import load as jload
 from os import mkdir
-from os.path import abspath, basename, dirname, expanduser, isdir, isfile, join
+from pathlib import Path
 from re import sub
 from shutil import copytree
 from sys import argv
@@ -49,36 +48,40 @@ if __name__ == "__main__":
             argv.append(input("Drag folder here and hit ENTER: "))
         if len(argv) != 2:
             print("%s <folder>" % argv[0]); exit(1)
-        argv[1] = abspath(expanduser(argv[1])).rstrip('/').rstrip('\\')
-        if not isdir(argv[1]):
-            raise ValueError("Folder not found: %s" % argv[1])
+        orig_path = Path(argv[1]).expanduser().absolute()
+        if not orig_path.is_dir():
+            raise ValueError("Folder not found: %s" % orig_path)
 
         # load JSONs
         print("Loading mapping of serial numbers to titles...")
         TITLE = load_jsons(JSON_URLS)
 
         # find game folders via DFS
-        print("Scanning for game folders in: %s" % argv[1])
-        game_folders = set(); to_explore = [argv[1]]
+        print("Scanning for game folders in: %s" % orig_path)
+        game_folders = set(); to_explore = [orig_path]
         while len(to_explore) != 0:
             curr_path = to_explore.pop()
-            if isdir(curr_path) and curr_path not in IGNORE:
-                to_explore += list(glob(join(curr_path, '*')))
-            elif isfile(curr_path) and curr_path.lower().endswith('.mcd'):
-                game_folders.add(dirname(curr_path))
+            if curr_path.is_dir() and curr_path.name not in IGNORE:
+                to_explore += curr_path.glob('*')
+            elif curr_path.is_file() and curr_path.name.lower().endswith('.mcd'):
+                game_folders.add(curr_path.parent)
         print("Found %d game folder(s)" % len(game_folders))
 
         # rename game folders
-        out_path = abspath(expanduser(join(argv[1], '..', 'renamed_%s' % get_time())))
-        print("Copying renamed folders to: %s" % out_path)
-        if isfile(out_path) or isdir(out_path):
+        out_folder = 'renamed_%s' % get_time(); out_path = orig_path.parent.joinpath(out_folder)
+        if out_path.is_dir() or out_path.is_file():
             raise ValueError("Output path exists: %s" % out_path)
-        mkdir(out_path); serial_not_found = list()
+        try:
+            out_path.mkdir()
+        except:
+            out_path = Path.home().joinpath('Deskatop').joinpath(out_folder); out_path.mkdir()
+        print("Copying renamed folders to: %s" % out_path)
+        serial_not_found = list()
         for curr_path in game_folders:
-            folder = basename(curr_path).strip()
+            folder = curr_path.name.strip()
             if ' - ' in folder: # folder with title, so rename to MemCard PRO format
-                memcard_folder = '-'.join(basename(list(glob(join(curr_path, '*.mcd')))[0]).split('-')[:-1])
-                copytree(curr_path, join(out_path, safe_name(memcard_folder)))
+                memcard_folder = '-'.join(curr_path.glob('*.mcd')[0].name.split('-')[:-1])
+                copytree(curr_path, out_path.joinpath(safe_name(memcard_folder)))
             else:               # folder without title, so rename to human-readable
                 folder_upper = folder.upper(); curr_title = None
                 if folder_upper in TITLE:
@@ -90,7 +93,7 @@ if __name__ == "__main__":
                 if curr_title is None:
                     serial_not_found.append(folder_upper)
                 else:
-                    copytree(curr_path, join(out_path, safe_name('%s - %s' % (folder, curr_title))))
+                    copytree(curr_path, out_path.joinpath(safe_name('%s - %s' % (folder, curr_title))))
 
         # report any that failed to copy
         if len(serial_not_found) != 0:
