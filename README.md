@@ -1,6 +1,6 @@
 [**`memcard_pro_renamer.py`**](https://github.com/niemasd/MemCard-PRO-Renamer/releases/latest/download/memcard_pro_renamer.py) is a cross-platform pure-Python script for renaming MemCard PRO save folders. Just do the following:
 
-1. Download the [`memcard_pro_renamer.py`]([memcard_pro_renamer.py](https://github.com/niemasd/MemCard-PRO-Renamer/releases/latest/download/memcard_pro_renamer.py)) script to your computer
+1. Download the [`memcard_pro_renamer.py`](https://github.com/niemasd/MemCard-PRO-Renamer/releases/latest/download/memcard_pro_renamer.py) script to your computer
 2. Run the script (e.g. double-click)
 3. Drag-and-drop the folder that contains all of your game save folders (or manually type it if drag-and-drop doesn't work on your machine)
 4. Hit `ENTER`, and the tool will create a renamed copy of each of your game save folders (to avoid accidentally overwriting and breaking something)
