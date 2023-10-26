@@ -12,7 +12,7 @@ from sys import argv
 from urllib.request import urlopen
 
 # useful constants
-VERSION = '1.0.4'
+VERSION = '1.0.5'
 EXIT_STRING = "Press ENTER to exit"
 
 # serial-to-title JSONs as dicts: https://github.com/niemasd/GameDB
