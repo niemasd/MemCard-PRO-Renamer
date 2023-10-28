@@ -12,8 +12,9 @@ from sys import argv
 from urllib.request import urlopen
 
 # useful constants
-VERSION = '1.0.6'
+VERSION = '1.0.7'
 EXIT_STRING = "Press ENTER to exit"
+EXTS = {'mcd', 'raw'}
 
 # serial-to-title JSONs as dicts: https://github.com/niemasd/GameDB
 DICTS = {
@@ -75,10 +76,8 @@ if __name__ == "__main__":
             curr_path = to_explore.pop()
             if curr_path.is_dir() and curr_path.name not in IGNORE:
                 to_explore += curr_path.glob('*')
-            elif curr_path.is_file():
-                curr_path_name_lower = curr_path.name.lower()
-                if curr_path_name_lower.endswith('.mcd') or curr_path_name_lower.endswith('.raw'):
-                    game_folders.add(curr_path.parent)
+            elif curr_path.is_file() and '.' in curr_path.name and curr_path.name.lower().split('.')[-1] in EXTS:
+                game_folders.add(curr_path.parent)
         print("Found %d game folder(s)" % len(game_folders))
 
         # rename game folders
@@ -94,7 +93,10 @@ if __name__ == "__main__":
         for curr_path in game_folders:
             folder = curr_path.name.strip()
             if ' - ' in folder: # folder with title, so rename to MemCard PRO format
-                memcard_folder = '-'.join(list(curr_path.glob('*.mcd'))[0].name.split('-')[:-1])
+                save_files = list()
+                for ext in EXTS:
+                    save_files += list(curr_path.glob('*.%s' % ext))
+                memcard_folder = '-'.join(save_files[0].name.split('-')[:-1])
                 copytree(curr_path, out_path.joinpath(safe_name(memcard_folder)))
             else:               # folder without title, so rename to human-readable
                 folder_upper = folder.upper(); curr_title = None
