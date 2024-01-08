@@ -9,7 +9,7 @@
 4. Hit `ENTER`, and the tool will create a renamed copy of each of your game save folders (to avoid accidentally overwriting and breaking something)
 
 ## How It Works
-It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://github.com/niemasd/GameDB-PS2), and [GameCube](https://github.com/niemasd/GameDB-GC) serial number to title mappings from [my game databases](https://github.com/niemasd/GameDB), and it'll automatically rename your game folders as follows:
+It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://github.com/niemasd/GameDB-PS2), and [GameCube](https://github.com/niemasd/GameDB-GC) serial-number-to-title mappings from [my game databases](https://github.com/niemasd/GameDB), and it'll automatically rename your game folders as follows:
 
 * If your game save folders are in the original `SXXX-XXXXX` serial number format, it'll rename them to `SXXX-XXXXX - GAME TITLE` so you can back them up in a human-readable format
 * If your game save folders are already in the renamed `SXXX-XXXXX - GAME TITLE` format, it'll rename them back to the `SXXX-XXXXX` serial number format so you can restore them back onto the MemCard PRO
