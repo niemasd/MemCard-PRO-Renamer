@@ -13,6 +13,7 @@ It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://githu
 
 * If your game save folders are in the original `SXXX-XXXXX` serial number format, it'll rename them to `SXXX-XXXXX - GAME TITLE` so you can back them up in a human-readable format
 * If your game save folders are already in the renamed `SXXX-XXXXX - GAME TITLE` format, it'll rename them back to the `SXXX-XXXXX` serial number format so you can restore them back onto the MemCard PRO
+* It should also support GameCube (`DOL-XXXX-XXX` serial number format), but I haven't test it yet myself
 
 You'll need Python installed on your machine to run this script, and it *should* hopefully work on any operating system out-of-the-box. If not, please feel free to create a [GitHub Issue](https://github.com/niemasd/MemCard-PRO-Renamer/issues) with info about your computer's operating system / environment, and I can try to help figure it out :-)
 
