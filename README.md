@@ -10,6 +10,7 @@ Just do the following:
 3. Drag-and-drop the folder that contains all of your game save folders (or manually type it if drag-and-drop doesn't work on your machine)
 4. Hit `ENTER`, and the tool will create a renamed copy of each of your game save folders (to avoid accidentally overwriting and breaking something)
 
+## How It Works
 It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://github.com/niemasd/GameDB-PS2), and [GameCube](https://github.com/niemasd/GameDB-GC) serial number to title mappings from [my game databases](https://github.com/niemasd/GameDB), and it'll automatically rename your game folders as follows:
 
 * If your game save folders are in the original `SXXX-XXXXX` serial number format, it'll rename them to `SXXX-XXXXX - GAME TITLE` so you can back them up in a human-readable format
