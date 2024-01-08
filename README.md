@@ -27,3 +27,7 @@ If you find any games that aren't in my databases, please consider submitting th
 # OS-Specific Notes
 ## Windows
 Instead of installing Python from [python.org](https://www.python.org), which doesn't seem to work with double-click out-of-the-box (it seems to just instantly close the command prompt that gets opened), try installing Python through the [Microsoft Store](https://apps.microsoft.com/detail/python-3-11/9NRWMJP3717K).
+
+# Acknowledgements
+* Thanks to [8BitMods](https://8bitmods.com/) for the awesome MemCard PRO devices!
+* Thanks to [Joe Redifer](https://gamesack.net/) for helping me test the script!
