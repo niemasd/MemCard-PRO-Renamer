@@ -1,6 +1,9 @@
 # MemCard PRO Renamer
 
-[**`memcard_pro_renamer.py`**](https://github.com/niemasd/MemCard-PRO-Renamer/releases/latest/download/memcard_pro_renamer.py) is a cross-platform pure-Python script for renaming MemCard PRO save folders. Just do the following:
+[**`memcard_pro_renamer.py`**](https://github.com/niemasd/MemCard-PRO-Renamer/releases/latest/download/memcard_pro_renamer.py) is a cross-platform pure-Python script for renaming MemCard PRO save folders.
+
+## Usage
+Just do the following:
 
 1. Download the [`memcard_pro_renamer.py`](https://github.com/niemasd/MemCard-PRO-Renamer/releases/latest/download/memcard_pro_renamer.py) script to your computer
 2. Run the script (e.g. double-click)
@@ -14,6 +17,7 @@ It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://githu
 
 You'll need Python installed on your machine to run this script, and it *should* hopefully work on any operating system out-of-the-box. If not, please feel free to create a [GitHub Issue](https://github.com/niemasd/MemCard-PRO-Renamer/issues) with info about your computer's operating system / environment, and I can try to help figure it out :-)
 
+## Missing Games
 If you find any games that aren't in my databases, please consider submitting their info in a GitHub Issue so I can add them!
 
 * PSX Games: [https://github.com/niemasd/GameDB-PSX/issues](https://github.com/niemasd/GameDB-PSX/issues)
