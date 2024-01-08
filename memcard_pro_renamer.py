@@ -14,7 +14,7 @@ from urllib.request import urlopen
 # useful constants
 VERSION = '1.0.8'
 EXIT_STRING = "Press ENTER to exit"
-EXTS = {'mcd', 'raw'}
+EXTS = {'mc2', 'mcd', 'raw'}
 
 # serial-to-title JSONs as dicts: https://github.com/niemasd/GameDB
 DICTS = {
