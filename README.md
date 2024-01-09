@@ -21,8 +21,8 @@ Here's an example of before and after (left = original MemCard PRO 2 folder; rig
 
 ![Example MemCard PRO Renamer before and after](images/example_folders.jpg)
 
-## Missing Games
-If you find any games that aren't in my databases, please consider submitting their info in a GitHub Issue so I can add them!
+## Missing / Incorrect Games
+If you find any games that aren't in my databases, or if any of the renamed titles are incorrect, please consider submitting all relevant info in a GitHub Issue so I can add/update them!
 
 * PSX Games: [https://github.com/niemasd/GameDB-PSX/issues](https://github.com/niemasd/GameDB-PSX/issues)
 * PS2 Games: [https://github.com/niemasd/GameDB-PS2/issues](https://github.com/niemasd/GameDB-PS2/issues)
