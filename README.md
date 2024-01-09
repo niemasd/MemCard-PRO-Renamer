@@ -8,6 +8,8 @@
 3. Drag-and-drop the folder that contains all of your game save folders (or manually type it if drag-and-drop doesn't work on your machine)
 4. Hit `ENTER`, and the tool will create a renamed copy of each of your game save folders (to avoid accidentally overwriting and breaking something)
 
+You'll need Python installed on your machine to run this script, and it *should* hopefully work on any operating system out-of-the-box. If not, please feel free to create a [GitHub Issue](https://github.com/niemasd/MemCard-PRO-Renamer/issues) with info about your computer's operating system / environment, and I can try to help figure it out :-)
+
 ## How It Works
 It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://github.com/niemasd/GameDB-PS2), and [GameCube](https://github.com/niemasd/GameDB-GC) serial-number-to-title mappings from [my game databases](https://github.com/niemasd/GameDB), and it'll automatically rename your game folders as follows:
 
@@ -15,7 +17,9 @@ It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://githu
 * If your game save folders are already in the renamed `SXXX-XXXXX - GAME TITLE` format, it'll rename them back to the `SXXX-XXXXX` serial number format so you can restore them back onto the MemCard PRO
 * It should also support GameCube (`DOL-XXXX-XXX` serial number format), but I haven't test it yet myself
 
-You'll need Python installed on your machine to run this script, and it *should* hopefully work on any operating system out-of-the-box. If not, please feel free to create a [GitHub Issue](https://github.com/niemasd/MemCard-PRO-Renamer/issues) with info about your computer's operating system / environment, and I can try to help figure it out :-)
+Here's an example of before and after (left = original MemCard PRO 2 folder; right = renamed folders; screenshot by [Joe Redifer from Game Sack](https://gamesack.net/)):
+
+![Example MemCard PRO Renamer before and after](images/example_folders.jpg)
 
 ## Missing Games
 If you find any games that aren't in my databases, please consider submitting their info in a GitHub Issue so I can add them!
