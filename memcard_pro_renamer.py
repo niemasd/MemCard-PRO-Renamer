@@ -12,7 +12,7 @@ from sys import argv
 from urllib.request import urlopen
 
 # useful constants
-VERSION = '1.0.8'
+VERSION = '1.0.9'
 EXIT_STRING = "Press ENTER to exit"
 EXTS = {'mc2', 'mcd', 'raw'}
 
@@ -87,7 +87,7 @@ if __name__ == "__main__":
         try:
             out_path.mkdir()
         except:
-            out_path = Path.home().joinpath('Deskatop').joinpath(out_folder); out_path.mkdir()
+            out_path = Path.home().joinpath('Desktop').joinpath(out_folder); out_path.mkdir()
         print("Copying renamed folders to: %s" % out_path)
         serial_not_found = list()
         for curr_path in game_folders:
