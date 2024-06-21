@@ -12,7 +12,7 @@ from sys import argv
 from urllib.request import urlopen
 
 # useful constants
-VERSION = '1.0.11'
+VERSION = '1.0.12'
 EXIT_STRING = "Press ENTER to exit"
 EXTS = {'mc2', 'mcd', 'raw'}
 
@@ -37,7 +37,7 @@ def get_time():
 
 # convert a string to a safe folder name (replace unsafe symbols with '_')
 def safe_name(s):
-    return sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F]", '_', s.strip())
+    return sub(r"[/\\?%*|\"<>\x7F\x00-\x1F]", '_', s.replace(':',' -').strip())
 
 # load serial-to-title mapping from dicts in this file
 def load_dicts(dicts):
