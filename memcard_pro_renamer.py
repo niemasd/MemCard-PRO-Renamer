@@ -45,9 +45,9 @@ def load_dicts(dicts):
     for console, curr in dicts.items():
         for k, v in curr.items():
             if console == 'GC':
-                out[k.strip().split('-')[1].strip().upper()] = v.strip().upper()
+                out[k.strip().split('-')[1].strip().upper()] = v.strip()
             else:
-                out[k.strip().upper()] = v.strip().upper()
+                out[k.strip().upper()] = v.strip()
     return out
 
 # main program
