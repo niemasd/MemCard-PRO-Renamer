@@ -12,7 +12,7 @@ from sys import argv
 from urllib.request import urlopen
 
 # useful constants
-VERSION = '1.0.9'
+VERSION = '1.0.10'
 EXIT_STRING = "Press ENTER to exit"
 EXTS = {'mc2', 'mcd', 'raw'}
 
@@ -45,7 +45,7 @@ def load_dicts(dicts):
     for console, curr in dicts.items():
         for k, v in curr.items():
             if console == 'GC':
-                out[k.strip().split('-')[2].strip().upper()] = v.strip().upper()
+                out[k.strip().split('-')[1].strip().upper()] = v.strip().upper()
             else:
                 out[k.strip().upper()] = v.strip().upper()
     return out
