@@ -34,4 +34,5 @@ Instead of installing Python from [python.org](https://www.python.org), which do
 
 # Acknowledgements
 * Thanks to [8BitMods](https://8bitmods.com/) for the awesome MemCard PRO devices!
-* Thanks to [Joe Redifer from Game Sack](https://gamesack.net/) for helping me test the script!
+* Thanks to [Joe Redifer from Game Sack](https://gamesack.net/) for helping me test the script and for the [shout-out](https://youtu.be/JqIBxuN42cQ?si=gsPSXFa-mJ5cPAdr&t=156)!
+* Thanks to [My Life in Gaming](https://www.mylifeingaming.com/) for the [shout-out](https://youtu.be/0HUC3gnPMZs?si=cfUpM-9noKYA7sUY&t=1027)!
