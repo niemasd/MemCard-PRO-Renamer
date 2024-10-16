@@ -15,7 +15,6 @@ It'll load the [PSX](https://github.com/niemasd/GameDB-PSX), [PS2](https://githu
 
 * If your game save folders are in the original `SXXX-XXXXX` serial number format, it'll rename them to `SXXX-XXXXX - GAME TITLE` so you can back them up in a human-readable format
 * If your game save folders are already in the renamed `SXXX-XXXXX - GAME TITLE` format, it'll rename them back to the `SXXX-XXXXX` serial number format so you can restore them back onto the MemCard PRO
-* It should also support GameCube (`DOL-XXXX-XXX` serial number format), but I haven't test it yet myself
 
 Here's an example of before and after (left = original MemCard PRO 2 folder; right = renamed folders; screenshot by [Joe Redifer from Game Sack](https://gamesack.net/)):
 
